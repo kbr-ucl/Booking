@@ -21,7 +21,7 @@ namespace Booking.Domain.Tests.BookingTests
         }
 
         [Fact]
-        public void GivenBookingsHasOverlaps_ThenThrowException()
+        public void GivenBookingsHasOverlaps_ThenReturnFalse()
         {
             // Arrange
             var sut = new Model.Booking(
@@ -33,6 +33,27 @@ namespace Booking.Domain.Tests.BookingTests
                     new DateTime(2021, 10, 1), 
                     new DateTime(2021, 10, 5))});
             var expected = false;
+
+            // Act
+            var actual = sut.IsOverlapping(otherBookings);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void GivenBookingsHasOverlaps2_ThenReturnTrue()
+        {
+            // Arrange
+            var sut = new Model.Booking(
+                new DateTime(2021, 9, 1),
+                new DateTime(2021, 9, 5));
+
+            var otherBookings = new List<Model.Booking>(new[]
+            {new Model.Booking(
+                new DateTime(2021, 9, 2),
+                new DateTime(2021, 10, 6))});
+            var expected = true;
 
             // Act
             var actual = sut.IsOverlapping(otherBookings);
