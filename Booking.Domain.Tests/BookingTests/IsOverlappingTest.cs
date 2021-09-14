@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using Xunit;
-using Booking = Booking.Domain.Model.Booking;
 
 namespace Booking.Domain.Tests.BookingTests
 {
@@ -23,7 +23,22 @@ namespace Booking.Domain.Tests.BookingTests
         [Fact]
         public void GivenBookingsHasOverlaps_ThenThrowException()
         {
+            // Arrange
+            var sut = new Model.Booking(
+                new DateTime(2021, 9, 1), 
+                new DateTime(2021, 9, 5));
 
+            var otherBookings = new List<Model.Booking>(new[]
+                {new Model.Booking(
+                    new DateTime(2021, 10, 1), 
+                    new DateTime(2021, 10, 5))});
+            var expected = false;
+
+            // Act
+            var actual = sut.IsOverlapping(otherBookings);
+
+            // Assert
+            Assert.Equal(expected, actual);
         }
     }
 }
