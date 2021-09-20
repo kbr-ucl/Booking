@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Persistance", "Book
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Application", "Booking.Application\Booking.Application.csproj", "{A37CA0D9-E506-45E2-B072-0BAE0E0C2B1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Mvc", "Booking.Mvc\Booking.Mvc.csproj", "{3FB8357E-1903-438B-9F0F-D64C3170AF64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Api", "Booking.Api\Booking.Api.csproj", "{27F8A4F8-2338-4C9D-B8B9-ECD2D29FA30A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{A37CA0D9-E506-45E2-B072-0BAE0E0C2B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A37CA0D9-E506-45E2-B072-0BAE0E0C2B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A37CA0D9-E506-45E2-B072-0BAE0E0C2B1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FB8357E-1903-438B-9F0F-D64C3170AF64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FB8357E-1903-438B-9F0F-D64C3170AF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FB8357E-1903-438B-9F0F-D64C3170AF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FB8357E-1903-438B-9F0F-D64C3170AF64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F8A4F8-2338-4C9D-B8B9-ECD2D29FA30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F8A4F8-2338-4C9D-B8B9-ECD2D29FA30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F8A4F8-2338-4C9D-B8B9-ECD2D29FA30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F8A4F8-2338-4C9D-B8B9-ECD2D29FA30A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,7 +29,7 @@ namespace Booking.Persistance.Repositorys
 
         Domain.Model.Booking IBookingRepository.GetBooking(Guid bookingId)
         {
-            throw new NotImplementedException();
+            return _context.Bookings.Include(a => a.Calendar).First(a => a.Id == bookingId);
         }
     }
 }

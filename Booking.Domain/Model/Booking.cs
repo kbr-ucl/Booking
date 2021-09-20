@@ -32,7 +32,7 @@ namespace Booking.Domain.Model
 
         public bool IsOverlapping(List<Booking> otherBookings)
         {
-            var result = otherBookings.Any(a => a.StartTid >= StartTid && StartTid <= a.SlutTid);
+            var result = otherBookings.Except(new []{this}).Any(a => a.StartTid >= StartTid && StartTid <= a.SlutTid);
             //result = result || 
             return result;
         }

@@ -22,8 +22,8 @@ namespace Booking.Application.Implementation
             // Get Calendar
             var calendar = _calendarRepository.GetBookingCalendar(command.CalenderId);
             // Domain roules validation
-            var booking = new Domain.Model.Booking(command.StartTid, command.SlutTid, calendar);
             var otherBookings = _repository.GetBookings(calendar.Id);
+            var booking = new Domain.Model.Booking(command.StartTid, command.SlutTid, calendar);
             if (booking.IsOverlapping(otherBookings)) throw new Exception($"Ny booking start: {command.StartTid}, slut:{command.SlutTid} i kalender: {calendar.Id} overlapper med en anden booking" );
 
             // Ok
