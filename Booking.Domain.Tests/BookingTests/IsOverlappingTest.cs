@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Booking.Domain.Model;
 using Xunit;
 
 namespace Booking.Domain.Tests.BookingTests
@@ -26,12 +27,14 @@ namespace Booking.Domain.Tests.BookingTests
             // Arrange
             var sut = new Model.Booking(
                 new DateTime(2021, 9, 1), 
-                new DateTime(2021, 9, 5));
+                new DateTime(2021, 9, 5),
+                new BookingCalendar());
 
             var otherBookings = new List<Model.Booking>(new[]
                 {new Model.Booking(
                     new DateTime(2021, 10, 1), 
-                    new DateTime(2021, 10, 5))});
+                    new DateTime(2021, 10, 5),
+                    new BookingCalendar())});
             var expected = false;
 
             // Act
@@ -47,12 +50,14 @@ namespace Booking.Domain.Tests.BookingTests
             // Arrange
             var sut = new Model.Booking(
                 new DateTime(2021, 9, 1),
-                new DateTime(2021, 9, 5));
+                new DateTime(2021, 9, 5),
+                new BookingCalendar());
 
             var otherBookings = new List<Model.Booking>(new[]
             {new Model.Booking(
                 new DateTime(2021, 9, 2),
-                new DateTime(2021, 10, 6))});
+                new DateTime(2021, 10, 6),
+                new BookingCalendar())});
             var expected = true;
 
             // Act

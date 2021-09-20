@@ -1,14 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace Booking.Persistance
 {
     public class BookingContext : DbContext
     {
-        public DbSet<Domain.Model.Booking> Bookings { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
+        public BookingContext(DbContextOptions<BookingContext> options) : base(options)
         {
-            //PK, FK...
+        }
+
+        public DbSet<Domain.Model.Booking> Bookings { get; set; }
+        public DbSet<Domain.Model.BookingCalendar> Calendars { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

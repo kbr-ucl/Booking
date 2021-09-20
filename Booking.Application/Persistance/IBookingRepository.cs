@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Booking.Application
+namespace Booking.Application.Persistance
 {
     public interface IBookingRepository
     {
-        public List<Domain.Model.Booking> GetBookings();
+        public List<Domain.Model.Booking> GetBookings(Guid calendarId);
 
         public void Save(Domain.Model.Booking booking);
     }
