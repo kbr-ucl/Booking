@@ -4,6 +4,6 @@ namespace Booking.Application
 {
     public interface ICreateBookingUseCase
     {
-        void CreateBooking(BookingCommand command);
+        void CreateBooking(CreateBookingRequest command);
     }
 }

@@ -17,7 +17,7 @@ namespace Booking.Application.Implementation
 
 
 
-        public void CreateBooking(BookingCommand command)
+        public void CreateBooking(CreateBookingRequest command)
         {
             // Get Calendar
             var calendar = _calendarRepository.GetBookingCalendar(command.CalenderId);

@@ -8,5 +8,6 @@ namespace Booking.Application.Persistance
         public List<Domain.Model.Booking> GetBookings(Guid calendarId);
 
         public void Save(Domain.Model.Booking booking);
+        Domain.Model.Booking GetBooking(Guid bookingId);
     }
 }

@@ -26,5 +26,10 @@ namespace Booking.Persistance.Repositorys
             _context.Bookings.Add(booking);
             _context.SaveChanges();
         }
+
+        Domain.Model.Booking IBookingRepository.GetBooking(Guid bookingId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
