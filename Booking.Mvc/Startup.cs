@@ -37,7 +37,12 @@ namespace Booking.Mvc
         private void ApplicationIocConfig(IServiceCollection services)
         {
             services.AddScoped<ICreateBookingUseCase, CreateBookingUseCase>();
+            services.AddScoped<IGetBookingUseCase, GetBookingUseCase>();
             services.AddScoped<IBookingRepository, BookingRepository>();
+
+
+            services.AddScoped<ICreateCalendarUseCase, CreateCalendarUseCase>();
+            services.AddScoped<IGetCalendarUseCase, GetCalendarUseCase>();
             services.AddScoped<IBookingCalendarRepository, BookingCalendarRepository>();
         }
 
