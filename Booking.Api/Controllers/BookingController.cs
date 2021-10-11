@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Booking.Api.Dto;
+using Booking.Api.Contract.Dto;
 using Booking.Application;
 using Booking.Application.Commands;
 using Microsoft.AspNetCore.Mvc;

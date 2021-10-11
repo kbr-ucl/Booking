@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Booking.Api.Dto
+namespace Booking.Api.Contract.Dto
 {
     public class BookingDto
     {
