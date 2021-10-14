@@ -19,6 +19,7 @@ namespace Booking.Application.Implementation
 
         public void CreateBooking(CreateBookingRequest command)
         {
+            _repository.StartTransaction();
             // Get Calendar
             var calendar = _calendarRepository.GetBookingCalendar(command.CalenderId);
             // Domain roules validation
@@ -28,6 +29,7 @@ namespace Booking.Application.Implementation
 
             // Ok
             _repository.Save(booking);
+            _repository.Commit();
         }
     }
 }

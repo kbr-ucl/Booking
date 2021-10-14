@@ -9,5 +9,9 @@ namespace Booking.Application.Persistance
 
         public void Save(Domain.Model.Booking booking);
         Domain.Model.Booking GetBooking(Guid bookingId);
+
+        void StartTransaction();
+
+        void Commit();
     }
 }

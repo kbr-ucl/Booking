@@ -1,18 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Booking.Application.Persistance;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Booking.Persistance.Repositorys
 {
     public class BookingRepository : IBookingRepository
     {
         private readonly BookingContext _context;
+        private IDbContextTransaction _transaction;
 
         public BookingRepository(BookingContext context)
         {
             _context = context;
+        }
+
+        public void StartTransaction()
+        {
+            _transaction = _context.Database.BeginTransaction(IsolationLevel.Snapshot);
+        }
+
+        public void Commit()
+        {
+            try
+            {
+                _transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                _transaction.Rollback();
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         List<Domain.Model.Booking> IBookingRepository.GetBookings(Guid calendarId)
