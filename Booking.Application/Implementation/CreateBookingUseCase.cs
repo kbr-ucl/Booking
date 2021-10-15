@@ -8,18 +8,20 @@ namespace Booking.Application.Implementation
     {
         private readonly IBookingRepository _repository;
         private readonly IBookingCalendarRepository _calendarRepository;
+        private readonly IUnitOfWork<IBookingRepository, Domain.Model.Booking> _unitOfWork;
 
-        public CreateBookingUseCase(IBookingRepository repository, IBookingCalendarRepository calendarRepository)
+        public CreateBookingUseCase(IBookingCalendarRepository calendarRepository, IUnitOfWork<IBookingRepository, Booking.Domain.Model.Booking> unitOfWork)
         {
-            _repository = repository;
             _calendarRepository = calendarRepository;
+            _unitOfWork = unitOfWork;
+            _repository = unitOfWork.Repository;
         }
 
 
 
         public void CreateBooking(CreateBookingRequest command)
         {
-            _repository.StartTransaction();
+            _unitOfWork.BeginUnitOfWork();
             // Get Calendar
             var calendar = _calendarRepository.GetBookingCalendar(command.CalenderId);
             // Domain roules validation
@@ -28,8 +30,8 @@ namespace Booking.Application.Implementation
             if (booking.IsOverlapping(otherBookings)) throw new Exception($"Ny booking start: {command.StartTid}, slut:{command.SlutTid} i kalender: {calendar.Id} overlapper med en anden booking" );
 
             // Ok
-            _repository.Save(booking);
-            _repository.Commit();
+            _unitOfWork.Save(booking);
+            _unitOfWork.CommitUnitOfWork();
         }
     }
 }

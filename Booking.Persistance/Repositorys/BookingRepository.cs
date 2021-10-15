@@ -43,15 +43,16 @@ namespace Booking.Persistance.Repositorys
                    new List<Domain.Model.Booking>();
         }
 
-        void IBookingRepository.Save(Domain.Model.Booking booking)
-        {
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
-        }
 
         Domain.Model.Booking IBookingRepository.GetBooking(Guid bookingId)
         {
             return _context.Bookings.Include(a => a.Calendar).First(a => a.Id == bookingId);
+        }
+
+        void IRepository<Domain.Model.Booking>.Save(Domain.Model.Booking booking)
+        {
+            _context.Bookings.Add(booking);
+            _context.SaveChanges();
         }
     }
 }

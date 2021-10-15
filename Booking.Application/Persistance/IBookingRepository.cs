@@ -3,15 +3,9 @@ using System.Collections.Generic;
 
 namespace Booking.Application.Persistance
 {
-    public interface IBookingRepository
+    public interface IBookingRepository : IRepository<Domain.Model.Booking>
     {
-        public List<Domain.Model.Booking> GetBookings(Guid calendarId);
-
-        public void Save(Domain.Model.Booking booking);
+        List<Domain.Model.Booking> GetBookings(Guid calendarId);
         Domain.Model.Booking GetBooking(Guid bookingId);
-
-        void StartTransaction();
-
-        void Commit();
     }
 }
