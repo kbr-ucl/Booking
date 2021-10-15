@@ -52,6 +52,8 @@ namespace Booking.Api
             services.AddScoped<ICreateCalendarUseCase, CreateCalendarUseCase>();
             services.AddScoped<IGetCalendarUseCase, GetCalendarUseCase>();
             services.AddScoped<IBookingCalendarRepository, BookingCalendarRepository>();
+
+            services.AddScoped(typeof(IUnitOfWork<,>), typeof(UnitOfWork<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

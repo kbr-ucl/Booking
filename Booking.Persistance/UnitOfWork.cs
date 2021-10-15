@@ -22,7 +22,7 @@ namespace Booking.Persistance
 
         public void BeginUnitOfWork()
         {
-            _transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.Snapshot);
+            _transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.Serializable);
         }
 
         void IUnitOfWork<T, E>.Save(E entity)

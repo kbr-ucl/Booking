@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Booking.Application.Persistance;
 using Microsoft.EntityFrameworkCore;
@@ -18,31 +17,11 @@ namespace Booking.Persistance.Repositorys
             _context = context;
         }
 
-        public void StartTransaction()
-        {
-            _transaction = _context.Database.BeginTransaction(IsolationLevel.Snapshot);
-        }
-
-        public void Commit()
-        {
-            try
-            {
-                _transaction.Commit();
-            }
-            catch (Exception e)
-            {
-                _transaction.Rollback();
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
         List<Domain.Model.Booking> IBookingRepository.GetBookings(Guid calendarId)
         {
             return _context.Calendars.Include(a => a.Bookings).FirstOrDefault(a => a.Id == calendarId)?.Bookings ??
                    new List<Domain.Model.Booking>();
         }
-
 
         Domain.Model.Booking IBookingRepository.GetBooking(Guid bookingId)
         {
