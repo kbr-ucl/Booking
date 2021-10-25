@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Booking.Domain\Booking.Domain.csproj" />
+    <ProjectReference Include="..\Crosscut.Persistance\Crosscut.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

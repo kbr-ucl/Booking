@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0-rc.2.21480.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0-rc.2.21480.5">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Booking.Api.Contract\Booking.Api.Contract.csproj" />
     <ProjectReference Include="..\Booking.Persistance\Booking.Persistance.csproj" />
+    <ProjectReference Include="..\Crosscut.Persistance\Crosscut.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

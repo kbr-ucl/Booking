@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Booking.Application.Persistance;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+using Crosscut.Persistance;
 
 namespace Booking.Persistance.Repositorys
 {
     public class BookingRepository : IBookingRepository
     {
         private readonly BookingContext _context;
-        private IDbContextTransaction _transaction;
 
         public BookingRepository(BookingContext context)
         {
@@ -28,10 +27,14 @@ namespace Booking.Persistance.Repositorys
             return _context.Bookings.Include(a => a.Calendar).First(a => a.Id == bookingId);
         }
 
-        void IRepository<Domain.Model.Booking>.Save(Domain.Model.Booking booking)
+        DbContext IRepository.GetContext()
         {
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
+            return _context;
+        }
+
+        void IBookingRepository.AddBooking(Domain.Model.Booking booking)
+        {
+            _context.Add(booking);
         }
     }
 }

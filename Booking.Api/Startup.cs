@@ -3,6 +3,7 @@ using Booking.Application.Implementation;
 using Booking.Application.Persistance;
 using Booking.Persistance;
 using Booking.Persistance.Repositorys;
+using Crosscut.Persistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -53,7 +54,7 @@ namespace Booking.Api
             services.AddScoped<IGetCalendarUseCase, GetCalendarUseCase>();
             services.AddScoped<IBookingCalendarRepository, BookingCalendarRepository>();
 
-            services.AddScoped(typeof(IUnitOfWork<,>), typeof(UnitOfWork<,>));
+            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

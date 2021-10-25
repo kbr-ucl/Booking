@@ -1,33 +1,21 @@
-﻿using Booking.Application.Persistance;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
 
-namespace Booking.Persistance
+namespace Crosscut.Persistance
 {
-    public class UnitOfWork<T,E> : IUnitOfWork<T,E> where T : IRepository<E>
+    public class UnitOfWork<R>: IUnitOfWork<R> where R : IRepository
     {
-        private BookingContext _context;
-        private T _repository;
+        private DbContext _context;
         private IDbContextTransaction _transaction;
 
-        public UnitOfWork(BookingContext context, T repository)
+        public UnitOfWork(R repository)
         {
-            _context = context;
-            _repository = repository;
+            _context = repository.GetContext();
         }
-
-        public T Repository => _repository;
-
 
         public void BeginUnitOfWork()
         {
             _transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.Serializable);
-        }
-
-        void IUnitOfWork<T, E>.Save(E entity)
-        {
-            Repository.Save(entity);
         }
 
         public void CommitUnitOfWork()
