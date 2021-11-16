@@ -1,6 +1,7 @@
 using Booking.Api.Contract;
 using Booking.Mvc.Infrastructure;
 using Booking.Mvc.Infrastructure.BookingApi;
+using Booking.Mvc.Infrastructure.CalenderService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,7 @@ namespace Booking.Mvc
 
             // Load af IBooking service
             services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<ICalenderService, CalenderServiceProxy>();
 
 
             services.AddControllersWithViews();
