@@ -20,7 +20,6 @@ namespace Booking.Mvc.Controllers
 
         public IActionResult Index()
         {
-            var data = _bookingService.GetBookings(Guid.Parse("6403729F-4D0C-4129-A066-BBA105FF5962")).Result;
             return View();
         }
 
