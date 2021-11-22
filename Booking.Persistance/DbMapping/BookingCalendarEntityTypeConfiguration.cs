@@ -10,6 +10,7 @@ namespace Booking.Persistance.DbMapping
             builder.HasKey(b => b.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");
 
+            builder.Property(x => x.Concurrency).IsConcurrencyToken();
             builder
                 .HasMany(c => c.Bookings)
                 .WithOne(e => e.Calendar);
