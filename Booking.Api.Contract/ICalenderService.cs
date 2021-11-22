@@ -11,5 +11,6 @@ namespace Booking.Api.Contract
     { 
         List<CalendarDto> GetCalendars();
         Task<List<CalendarDto>> GetCalendarsAsync();
+        Task<CalendarDto> GetCalendarByIdAsync(Guid id);
     }
 }

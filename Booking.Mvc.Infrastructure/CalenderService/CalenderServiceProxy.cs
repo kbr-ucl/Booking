@@ -29,6 +29,12 @@ namespace Booking.Mvc.Infrastructure.CalenderService
             _httpClient.DefaultRequestHeaders.Add(
                 HeaderNames.UserAgent, "HttpRequestsSample");
         }
+
+        public Task<CalendarDto> GetCalendarByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<CalendarDto> GetCalendars()
         {
             throw new NotImplementedException();
