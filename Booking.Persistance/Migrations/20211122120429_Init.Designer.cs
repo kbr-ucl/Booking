@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Persistance.Migrations
 {
     [DbContext(typeof(BookingContext))]
-    [Migration("20211122102016_Init")]
+    [Migration("20211122120429_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,8 @@ namespace Booking.Persistance.Migrations
 
                     b.Property<byte[]>("Concurrency")
                         .IsConcurrencyToken()
-                        .HasColumnType("varbinary(max)");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

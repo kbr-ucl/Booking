@@ -30,21 +30,23 @@ namespace Booking.Mvc.Infrastructure.CalenderService
                 HeaderNames.UserAgent, "HttpRequestsSample");
         }
 
-        public Task<CalendarDto> GetCalendarByIdAsync(Guid id)
+        public async Task CreateCalendarAsync(CalendarDto calendar)
         {
-            throw new NotImplementedException();
+            await _httpClient.PostAsJsonAsync("api/Calendar", calendar);
         }
 
-        public List<CalendarDto> GetCalendars()
-        {
-            throw new NotImplementedException();
-        }
-
+        public async Task<CalendarDto> GetCalendarByIdAsync(Guid id) =>
+            await _httpClient.GetFromJsonAsync<CalendarDto>(
+                $"api/Calendar/{id}");
 
 
         public async Task<List<CalendarDto>> GetCalendarsAsync() =>
             await _httpClient.GetFromJsonAsync<List<CalendarDto>>(
                 "api/Calendar");
+
+        public async Task UpdateCalendarAsync(CalendarDto calendar) =>
+            await _httpClient.PutAsJsonAsync("api/Calendar", calendar);
+
     }
 }
 

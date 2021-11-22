@@ -15,7 +15,7 @@ namespace Booking.Persistance.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Concurrency = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                    Concurrency = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {

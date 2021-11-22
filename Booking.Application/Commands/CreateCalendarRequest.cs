@@ -2,5 +2,6 @@
 {
     public class CreateCalendarRequest
     {
+        public string Name { get; set; }
     }
 }

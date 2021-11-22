@@ -14,12 +14,14 @@ namespace Booking.Api.Controllers
     public class CalendarController : ControllerBase
     {
         private readonly ICreateCalendarUseCase _createCalendarUseCase;
+        private readonly IUpdateCalendarUseCase _updateCalendarUseCase;
         private readonly IGetCalendarUseCase _getCalendarUseCase;
 
-        public CalendarController(IGetCalendarUseCase getCalendarUseCase, ICreateCalendarUseCase createCalendarUseCase)
+        public CalendarController(IGetCalendarUseCase getCalendarUseCase, ICreateCalendarUseCase createCalendarUseCase, IUpdateCalendarUseCase updateCalendarUseCase)
         {
             _getCalendarUseCase = getCalendarUseCase;
             _createCalendarUseCase = createCalendarUseCase;
+            _updateCalendarUseCase = updateCalendarUseCase;
         }
 
         // GET: api/<CalendarController>
@@ -29,7 +31,7 @@ namespace Booking.Api.Controllers
             var model = _getCalendarUseCase.GetCalendars();
             var dto = new List<CalendarDto>();
             model.ForEach(a => dto.Add(new CalendarDto
-                {Id = a.Id}));
+                {Id = a.Id, Name = a.Name, Concurrency = a.Concurrency}));
             return dto;
         }
 
@@ -38,7 +40,7 @@ namespace Booking.Api.Controllers
         public CalendarDto Get(Guid id)
         {
             var model = _getCalendarUseCase.GetCalendar(new GetCalendarRequest {CalendarId = id});
-            var dto = new CalendarDto {Id = model.Id};
+            var dto = new CalendarDto { Id = model.Id, Name = model.Name, Concurrency = model.Concurrency };
             return dto;
         }
 
@@ -46,14 +48,15 @@ namespace Booking.Api.Controllers
         [HttpPost]
         public void Post([FromBody] CalendarDto value)
         {
-            _createCalendarUseCase.CreateCalendar(new CreateCalendarRequest());
+            _createCalendarUseCase.CreateCalendar(new CreateCalendarRequest{Name = value.Name});
         }
 
-        //// PUT api/<CalendarController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        // PUT api/<CalendarController>/5
+        [HttpPut]
+        public void Put([FromBody] CalendarDto value)
+        {
+            _updateCalendarUseCase.UpdateCalendar(new UpdateCalendarRequest{Id = value.Id, Name = value.Name, Concurrency = value.Concurrency});
+        }
 
         //// DELETE api/<CalendarController>/5
         //[HttpDelete("{id}")]

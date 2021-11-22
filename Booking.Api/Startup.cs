@@ -52,6 +52,7 @@ namespace Booking.Api
 
             services.AddScoped<ICreateCalendarUseCase, CreateCalendarUseCase>();
             services.AddScoped<IGetCalendarUseCase, GetCalendarUseCase>();
+            services.AddScoped<IUpdateCalendarUseCase, UpdateCalendarUseCase>();
             services.AddScoped<IBookingCalendarRepository, BookingCalendarRepository>();
 
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));

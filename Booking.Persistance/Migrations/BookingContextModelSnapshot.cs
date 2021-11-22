@@ -53,7 +53,8 @@ namespace Booking.Persistance.Migrations
 
                     b.Property<byte[]>("Concurrency")
                         .IsConcurrencyToken()
-                        .HasColumnType("varbinary(max)");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
